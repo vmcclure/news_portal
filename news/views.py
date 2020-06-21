@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import News, Category
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -19,3 +20,7 @@ def get_category(request, category_id):
     return render(request, 'news/category.html', {'news' : news,
 
                                                'category' : category,})
+
+def view_news(request, news_id):
+    news_item = get_object_or_404(News, pk=news_id)
+    return render(request, 'news/view_news.html', {'item':news_item, 'category': news_item.category,})

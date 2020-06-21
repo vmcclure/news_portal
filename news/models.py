@@ -1,7 +1,9 @@
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 class News(models.Model):
+    def get_absolute_url(self):
+        return reverse('news', kwargs={'news_id' : self.pk})
     title = models.CharField(max_length=150, verbose_name='Наименование')
     content = models.TextField(blank=True, verbose_name='контент')
     create_at = models.DateTimeField(auto_now_add=True)
@@ -18,6 +20,9 @@ class News(models.Model):
         ordering = ['-create_at']
 
 class Category(models.Model):
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'category_id' : self.pk})
+
     title = models.CharField(max_length=150, db_index=True, verbose_name='категории')
     def __str__(self):
         return self.title
