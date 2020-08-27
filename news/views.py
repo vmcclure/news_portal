@@ -32,6 +32,5 @@ def add_news(request):
         pass
     else:
         form = NewsForm()
-        pass
     return render(request, 'news/add_news.html', {'form' : form})
 
