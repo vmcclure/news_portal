@@ -2,7 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from .models import News, Category
 from django.shortcuts import get_object_or_404,redirect
 from .forms import NewsForm
+from django.views.generic import ListView
 # Create your views here.
+
+class HomeNews(ListView):
+    model = News
 
 
 def index(request):
